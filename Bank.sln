@@ -1,25 +1,86 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.3.32929.385
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank", "Bank\Bank.csproj", "{CFF81DDA-F2D2-46CB-9E72-E683B700D446}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CFF81DDA-F2D2-46CB-9E72-E683B700D446}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CFF81DDA-F2D2-46CB-9E72-E683B700D446}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CFF81DDA-F2D2-46CB-9E72-E683B700D446}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CFF81DDA-F2D2-46CB-9E72-E683B700D446}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {FA402278-E252-484A-A83E-F599CE6F2A9C}
-	EndGlobalSection
-EndGlobal
+Console.WriteLine("\t\t\t\t\tWelcome to page");
+
+
+string user = "seymur0308";
+string password = "12345";
+
+
+int ay = 0;
+int mebleg = 0;
+int faiz = 0;
+int odenilecegmebleg = 0;
+int sum = 0;
+
+Console.Write("User: ");
+string User= Console.ReadLine();
+Console.Write("Password: ");
+string Password= Console.ReadLine();
+
+
+if (User == user && Password == password)
+{
+    Console.WriteLine("\t\t\tWelcome to Bank");
+    Console.WriteLine("\t\t\t\t\t\t\t................");
+    Console.WriteLine("1.Kredit goturmek \n2.Kredit odemek \n3.Hesabat");
+}
+up:
+///Kredit goturmek
+int choose = Int32.Parse(Console.ReadLine());
+if (choose == 1)
+{
+    Console.WriteLine("12 ay azdirsa -12 % \n12 aydan ustun - 18%");
+    Console.Write("Ay daxil: "); ay = Int32.Parse(Console.ReadLine());
+    Console.Write("Mebleg Daxil: "); mebleg = Int32.Parse(Console.ReadLine());
+
+    if (ay <=12)
+    {
+        odenilecegmebleg = ((mebleg * 12) / 100) + mebleg;
+
+    }
+    else
+    {
+        odenilecegmebleg = ((mebleg * 18) / 100) + mebleg;
+    }
+    Console.WriteLine("Odenilecegmebleg: " + odenilecegmebleg);
+    Console.Write("Aylig odenis: " + odenilecegmebleg / 12);
+    Console.WriteLine("Istiyirsinizmi?");
+    Console.WriteLine("1.Yes");
+    Console.WriteLine("2.No");
+    int access = Int32.Parse(Console.ReadLine());
+    if (access == 1)
+        Console.WriteLine("Ugurlar");
+    else
+        Console.WriteLine("Teesuf");
+    goto up;
+}
+////Kredit odemek
+else if (choose == 2)
+{
+    Console.WriteLine("Odecegviz mebleg? "); int pay = Int32.Parse(Console.ReadLine());
+
+    if (pay < odenilecegmebleg)
+    {
+        odenilecegmebleg = odenilecegmebleg - pay;
+        Console.WriteLine($"Qalig: {odenilecegmebleg}");
+        ay = --ay;
+     }
+    else
+    {
+        Console.WriteLine("Mebleg cox oldu");
+        goto up;
+    }
+    goto up;
+        }
+//////Hesabat
+else if (choose == 3)
+{
+    Console.WriteLine($"Borc: {odenilecegmebleg}");
+    Console.WriteLine($"Qalan ay: {ay}");
+
+    goto up;
+}
+else
+{
+    goto up;
+}
+
